@@ -18,7 +18,7 @@ public class ListComprehension {
         List<Object> e8 = Arrays.asList(17, "WASHINGTON", "THOMAS", "WASHINTL", "9-FEB-91", "", "STOCK CLERK", 1200, 0, 42, 7);
         List<Object> e9 = Arrays.asList(18, "PATTERSON", "DONALD", "PATTERDV", "6-AUG-91", "", "STOCK CLERK", 795, 0, 42, 7);
         List<Object> e10 = Arrays.asList(19, "BELL", "ALEXANDER", "BELLAG", "26-MAY-91", "", "STOCK CLERK", 850, 0, 43, 8);
-        List<Object> e11 = Arrays.asList(2, "SMITH", "DORIS", "SMITHDJ", "8-MAR-90", "", "VP", "OPERATIONS", 2450, 0, 41, 1);
+        List<Object> e11 = Arrays.asList(2, "SMITH", "DORIS", "SMITHDJ", "8-MAR-90", "", "VP, OPERATIONS", 2450, 0, 41, 1);
         List<Object> e12 = Arrays.asList(20, "GANTOS", "EDDIE", "GANTOSEJ", "30-NOV-90", "", "STOCK CLERK", 800, 0, 44, 9);
         List<Object> e13 = Arrays.asList(21, "STEPHENSON", "BLAINE", "STEPHEBS", "17-MAR-91", "", "STOCK CLERK", 860, 0, 45, 10);
         List<Object> e14 = Arrays.asList(22, "CHESTER", "EDDIE", "CHESTEEK", "30-NOV-90", "", "STOCK CLERK", 800, 0, 44, 9);
@@ -61,15 +61,21 @@ public class ListComprehension {
 
         System.out.println("select * from s_dept");
         emp.stream()
-                .forEach(e -> { System.out.println(e.get(7)); });
+                .forEach(e -> { System.out.println(e); });
+        System.out.println("");
 
         System.out.println("select last_name, first_name, title, salary from s_emp;");
+        emp.stream()
+                .forEach(e -> { System.out.println(e.get(1) + " " + e.get(2) + " " + e.get(6) + " " + e.get(7)); });
+        System.out.println("");
 
         System.out.println("select last_name, first_name, title, salary from s_emp where salary > 1500 and dept_id > 40;");
-//        emp.stream()
-//                .filter(e -> e.get(7) > 1500);
-//                .filter(e -> e.get(9) > 40)
-//                .forEach(e -> { System.out.println(e.get(1) + " " + e.get(2) + " " + e.get(6) + " " + e.get(7)); });
+        emp.stream()
+                .filter(e -> (int)e.get(7) > 1500)
+                .filter(e -> (int)e.get(9) > 40)
+                .forEach(e -> { System.out.println(e.get(1) + " " + e.get(2) + " " + e.get(6) + " " + e.get(7)); });
+        System.out.println("");
 
+        System.out.println("");
     }
 }
