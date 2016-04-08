@@ -76,6 +76,29 @@ public class ListComprehension {
                 .forEach(e -> { System.out.println(e.get(1) + " " + e.get(2) + " " + e.get(6) + " " + e.get(7)); });
         System.out.println("");
 
+        System.out.println("select last_name, first_name, title, salary from s_emp where salary > 1500 and dept_id > 40 order by last_name;");
+
+        emp.stream()
+                .filter(e -> (int)e.get(7) > 1500)
+                .filter(e -> (int)e.get(9) > 40)
+                .sorted(Comparator.comparing(e -> (String)e.get(1)))
+                .forEach(e -> { System.out.println(e.get(1) + " " + e.get(2) + " " + e.get(6) + " " + e.get(7)); });
+
         System.out.println("");
+
+        System.out.println("select last_name, first_name, title, salary from s_emp where salary > 1500 and dept_id > 40 order by salary desc;");
+
+        emp.stream()
+                .filter(e -> (int)e.get(7) > 1500)
+                .filter(e -> (int)e.get(9) > 40)
+                .sorted(Collections.reverseOrder(Comparator.comparing(e -> (String)e.get(1))))
+                .forEach(e -> { System.out.println(e.get(1) + " " + e.get(2) + " " + e.get(6) + " " + e.get(7)); });
+
+        System.out.println("");
+
+        System.out.println("select dept_id, avg(salary) from s_emp group by dept_id order by dept_id;");
+
+        emp.stream()
+                .forEach(e -> {System.out.println(e.get(9) + " " + e.get(7));
     }
 }
