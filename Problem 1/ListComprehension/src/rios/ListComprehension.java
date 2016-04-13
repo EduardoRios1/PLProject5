@@ -98,7 +98,8 @@ public class ListComprehension {
 
         System.out.println("select dept_id, avg(salary) from s_emp group by dept_id order by dept_id;");
 
-        emp.stream()
-                .forEach(e -> {System.out.println(e.get(9) + " " + e.get(7));
+       // emp.stream()
+                //.collect(Collectors.groupingBy(e -> (int)e.get(9), collectingAndThen(e -> sum(e[7]), e -> {})))
+              //  .forEach(e -> {System.out.println(e.get(9) + " " + e.get(7));
     }
 }

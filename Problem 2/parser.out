@@ -1,0 +1,149 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DATA
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> HEADER
+Rule 2     start -> data
+Rule 3     float -> INTEGER . INTEGER
+Rule 4     date -> INTEGER / INTEGER / INTEGER
+Rule 5     data -> date float float
+
+Terminals, with rules where they appear
+
+.                    : 3
+/                    : 4 4
+DATA                 : 
+HEADER               : 1
+INTEGER              : 3 3 4 4 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+data                 : 2
+date                 : 5
+float                : 5 5
+start                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . HEADER
+    (2) start -> . data
+    (5) data -> . date float float
+    (4) date -> . INTEGER / INTEGER / INTEGER
+
+    HEADER          shift and go to state 1
+    INTEGER         shift and go to state 4
+
+    date                           shift and go to state 3
+    start                          shift and go to state 2
+    data                           shift and go to state 5
+
+state 1
+
+    (1) start -> HEADER .
+
+    $end            reduce using rule 1 (start -> HEADER .)
+
+
+state 2
+
+    (0) S' -> start .
+
+
+
+state 3
+
+    (5) data -> date . float float
+    (3) float -> . INTEGER . INTEGER
+
+    INTEGER         shift and go to state 6
+
+    float                          shift and go to state 7
+
+state 4
+
+    (4) date -> INTEGER . / INTEGER / INTEGER
+
+    /               shift and go to state 8
+
+
+state 5
+
+    (2) start -> data .
+
+    $end            reduce using rule 2 (start -> data .)
+
+
+state 6
+
+    (3) float -> INTEGER . . INTEGER
+
+    .               shift and go to state 9
+
+
+state 7
+
+    (5) data -> date float . float
+    (3) float -> . INTEGER . INTEGER
+
+    INTEGER         shift and go to state 6
+
+    float                          shift and go to state 10
+
+state 8
+
+    (4) date -> INTEGER / . INTEGER / INTEGER
+
+    INTEGER         shift and go to state 11
+
+
+state 9
+
+    (3) float -> INTEGER . . INTEGER
+
+    INTEGER         shift and go to state 12
+
+
+state 10
+
+    (5) data -> date float float .
+
+    $end            reduce using rule 5 (data -> date float float .)
+
+
+state 11
+
+    (4) date -> INTEGER / INTEGER . / INTEGER
+
+    /               shift and go to state 13
+
+
+state 12
+
+    (3) float -> INTEGER . INTEGER .
+
+    $end            reduce using rule 3 (float -> INTEGER . INTEGER .)
+    INTEGER         reduce using rule 3 (float -> INTEGER . INTEGER .)
+
+
+state 13
+
+    (4) date -> INTEGER / INTEGER / . INTEGER
+
+    INTEGER         shift and go to state 14
+
+
+state 14
+
+    (4) date -> INTEGER / INTEGER / INTEGER .
+
+    INTEGER         reduce using rule 4 (date -> INTEGER / INTEGER / INTEGER .)
+
