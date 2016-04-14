@@ -96,10 +96,25 @@ public class ListComprehension {
 
         System.out.println("");
 
-        System.out.println("select dept_id, avg(salary) from s_emp group by dept_id order by dept_id;");
+        System.out.println("select dept_id, salary from s_emp order by dept_id;");
 
-       // emp.stream()
-                //.collect(Collectors.groupingBy(e -> (int)e.get(9), collectingAndThen(e -> sum(e[7]), e -> {})))
-              //  .forEach(e -> {System.out.println(e.get(9) + " " + e.get(7));
+
+        emp.stream()
+                .sorted(Comparator.comparing(e -> (int)e.get(9)))
+                .forEach(e -> {System.out.println(e.get(9) + " " + e.get(7));});
+
+        System.out.println("");
+
+        System.out.println("select first_name, last_name, salary from s_emp where salary>2000 order by salary");
+
+
+        emp.stream()
+                .filter(e -> (int)e.get(7) > 2000)
+                .sorted(Comparator.comparing(e -> (int)e.get(9)))
+                .forEach(e -> { System.out.println(e.get(2) + " " + e.get(1) + " "  + e.get(7)); });
+
+        System.out.println("");
+
+
     }
 }
